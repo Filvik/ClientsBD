@@ -19,7 +19,7 @@ public class ContactController {
     private static final Logger log = LogManager.getLogger(ContactController.class);
     private final ContactService contactService;
 
-    @PostMapping(value = "/users/{clientId}/contacts/")
+    @PostMapping(value = "/clients/{clientId}/contacts/")
     @Operation(summary = "Запрос на добавления нового контакта для клиента", tags = "Эндпоинт добавления нового контакта для клиента")
     public BaseResponse addNewContact(@PathVariable @Parameter(description = "Идентификатор клиента") long clientId,
             @RequestBody @Parameter(description = "Данные контакта") ContactsAccount contactsForAccount) {
@@ -27,7 +27,7 @@ public class ContactController {
         return contactService.addContacts(contactsForAccount, clientId);
     }
 
-    @GetMapping(value = "/users/{clientId}/contacts/")
+    @GetMapping(value = "/clients/{clientId}/contacts/")
     @Operation(summary = "Запрос всех контактов клиента", tags = "Эндпоинт возвращает все контакты клиента")
     public BaseResponse getCollection(@PathVariable @Parameter(description = "Идентификатор аккаунта") long clientId,
                                           @RequestParam(required = false) String typeContact) {
